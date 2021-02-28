@@ -16,7 +16,7 @@ public class Program {
 		
 		SellerDao sellerDao = DaoFactory.createSellerDao();
 		
-		int x = 5;
+		int x = 6;
 		
 		switch(x){
 			case 1:
@@ -67,6 +67,11 @@ public class Program {
 			
 				System.out.println("Update Completed!");
 				break;
+				
+			case 6:
+				System.out.println("\n=== Test 6: seller delete ====");
+				sellerDao.deleteById(10);
+				System.out.println("Delete completed");
 		}
 		
 	}
