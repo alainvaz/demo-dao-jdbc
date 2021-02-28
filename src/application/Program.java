@@ -12,43 +12,62 @@ public class Program {
 
 	public static void main(String[] args) {
 		
-		SellerDao sellerDao = DaoFactory.createSellerDao();
-		
-		System.out.println("=== Test 1: seller findById ====");
-		
-		Seller seller = sellerDao.findById(5);
-		
-		System.out.println(seller);
-		
-		
-		System.out.println("\n=== Test 2: seller findByDepartment ====");
-		
 		Department department = new Department(2, null);
 		
+		SellerDao sellerDao = DaoFactory.createSellerDao();
 		
-		List <Seller> sellers = sellerDao.findByDepartment(department);
+		int x = 5;
 		
-		for(Seller obj : sellers) {
+		switch(x){
+			case 1:
+				System.out.println("=== Test 1: seller findById ====");
 			
-			System.out.println(obj);
-		}
-	
-		System.out.println("\n=== Test 3: seller findByDepartment ====");		
-		
-		List <Seller> allSellers = sellerDao.findAll();
-		
-		for(Seller obj : allSellers) {
+				Seller seller = sellerDao.findById(5);
 			
-			System.out.println(obj);
+				System.out.println(seller);
+				break;
+			case 2:
+				System.out.println("\n=== Test 2: seller findByDepartment ====");
+			
+				List <Seller> sellers = sellerDao.findByDepartment(department);
+			
+				for(Seller obj : sellers) {
+				
+					System.out.println(obj);
+				}
+				break;
+			case 3:
+				System.out.println("\n=== Test 3: seller findByDepartment ====");		
+			
+				List <Seller> allSellers = sellerDao.findAll();
+			
+				for(Seller obj : allSellers) {
+				
+					System.out.println(obj);
+				}
+				break;
+			case 4:
+				System.out.println("\n=== Test 4: seller insert ====");
+			
+			Seller newSeller = new Seller(null, "Jorge", "jorge@gmail.com",new Date(), 2500.0, department);
+			
+			sellerDao.insert(newSeller);
+			
+			System.out.println("Inserted! New ID = " + newSeller.getId());
+			
+				break;
+			case 5:
+				System.out.println("\n=== Test 5: seller update ====");
+			
+				Seller updateSeller = sellerDao.findById(1);
+			
+				updateSeller.setName("Jujuba bruxinha");
+			
+				sellerDao.update(updateSeller);
+			
+				System.out.println("Update Completed!");
+				break;
 		}
-		
-		System.out.println("\n=== Test 4: seller inserg ====");
-		
-		Seller newSeller = new Seller(null, "Greg", "greg@gmail.com",new Date(), 4000.0, department);
-		
-		sellerDao.insert(newSeller);
-		
-		System.out.println("Inserted! New ID = " + newSeller.getId());
 		
 	}
 
